@@ -13,16 +13,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.photowerewolfandroid.R
 import com.example.photowerewolfandroid.ui.theme.PhotoWerewolfAndroidTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen() {
+fun HomeScreen(navController: NavController) {
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Text(
             text = "写真人狼",
@@ -53,7 +55,7 @@ fun HomeScreen() {
         )
 
         Button(
-            onClick = { /*TODO*/ },
+            onClick = { navController.navigate("standardGame") },
             modifier = Modifier.size(200.dp, 70.dp),
             colors = ButtonDefaults.buttonColors(
                 containerColor = Color(0xFFF58220),
@@ -69,6 +71,6 @@ fun HomeScreen() {
 @Composable
 fun HomeScreenPreview() {
     PhotoWerewolfAndroidTheme {
-        HomeScreen()
+        HomeScreen(navController = NavController(LocalContext.current))
     }
 }
