@@ -17,7 +17,9 @@ import androidx.navigation.compose.rememberNavController
 import com.example.photowerewolfandroid.home.screen.component.HomeScreen
 import com.example.photowerewolfandroid.standardGame.screen.StandardGameScreen
 import com.example.photowerewolfandroid.ui.theme.PhotoWerewolfAndroidTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
