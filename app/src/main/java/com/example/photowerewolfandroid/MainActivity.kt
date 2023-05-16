@@ -11,13 +11,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.photowerewolfandroid.home.screen.component.HomeScreen
 import com.example.photowerewolfandroid.standardGame.screen.StandardGameScreen
+import com.example.photowerewolfandroid.standardGame.viewModel.StandardGameViewModel
 import com.example.photowerewolfandroid.ui.theme.PhotoWerewolfAndroidTheme
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,9 +38,17 @@ class MainActivity : ComponentActivity() {
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
+
+                        val standardGameViewModel = hiltViewModel<StandardGameViewModel>()
+
                         NavHost(navController, startDestination = "home") {
                             composable("home") { HomeScreen(navController) }
-                            composable("standardGame") { StandardGameScreen(navController) }
+                            composable("standardGame") {
+                                StandardGameScreen(
+                                    navController,
+                                    standardGameViewModel,
+                                )
+                            }
                         }
                     }
 
